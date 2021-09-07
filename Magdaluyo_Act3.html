@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!---WARNING: Validation In Progress--->
+	<title>Movie Reservation System</title>
+
+	<!---Computations and Changers--->
+	<script type="text/javascript">
+		function Time(){
+			if(document.getElementById('movietitle').value == "Archer"){
+				document.getElementById('time1').innerHTML="9:00 - 10:30";
+				document.getElementById('time2').innerHTML="11:00 - 12:30";
+				document.getElementById('time3').innerHTML="3:00 - 4:30";
+				document.getElementById('time4').innerHTML="5:00 - 6:30";
+			}
+			else if(document.getElementById('movietitle').value == "Freedom"){
+				document.getElementById('time1').innerHTML="11:30 - 1:00";
+				document.getElementById('time2').innerHTML="2:30 - 4:00";
+				document.getElementById('time3').innerHTML="5:00 - 6:30";
+				document.getElementById('time4').innerHTML="7:00 - 8:30";
+			}
+			else if(document.getElementById('movietitle').value == "Avengers"){
+				document.getElementById('time1').innerHTML="10:30 - 12:30";
+				document.getElementById('time2').innerHTML="1:30 - 3:30";
+				document.getElementById('time3').innerHTML="4:30 - 6:30";
+				document.getElementById('time4').innerHTML="7:00 - 9:00";
+			}
+			else if(document.getElementById('movietitle').value == "Frozen2"){
+				document.getElementById('time1').innerHTML="12:00 - 1:45";
+				document.getElementById('time2').innerHTML="2:00 - 3:45";
+				document.getElementById('time3').innerHTML="4:00 - 5:45";
+				document.getElementById('time4').innerHTML="NONE";
+			}
+			else if(document.getElementById('movietitle').value == "Spiderman"){
+				document.getElementById('time1').innerHTML="11:00 - 12:30";
+				document.getElementById('time2').innerHTML="2:30 - 4:00";
+				document.getElementById('time3').innerHTML="4:30 - 6:30";
+				document.getElementById('time4').innerHTML="7:00 - 8:30";
+			}
+			else if(document.getElementById('movietitle').value == "BuyBust"){
+				document.getElementById('time1').innerHTML="10:45 - 12:00";
+				document.getElementById('time2').innerHTML="12:00 - 1:45";
+				document.getElementById('time3').innerHTML="2:30 - 4:15";
+				document.getElementById('time4').innerHTML="NONE";
+			}
+			else if(document.getElementById('movietitle').value == "Eerie"){
+				document.getElementById('time1').innerHTML="9:00 - 10:30";
+				document.getElementById('time2').innerHTML="11:00 - 12:30";
+				document.getElementById('time3').innerHTML="2:30 - 4:00";
+				document.getElementById('time4').innerHTML="4:30 - 6:30";
+			}
+			else if(document.getElementById('movietitle').value == "ManilaKingpin"){
+				document.getElementById('time1').innerHTML="12:00 - 1:45";
+				document.getElementById('time2').innerHTML="2:00 - 3:45";
+				document.getElementById('time3').innerHTML="5:00 - 6:30";
+				document.getElementById('time4').innerHTML="7:00 - 8:30";
+			}
+			else{
+				document.getElementById('time1').innerHTML="-------------";
+				document.getElementById('time2').innerHTML="-------------";
+				document.getElementById('time3').innerHTML="-------------";
+				document.getElementById('time4').innerHTML="-------------";
+			}
+			if (document.getElementById('movietitle').value == "None"){
+				document.getElementById('cine1').innerHTML="-------------";
+				document.getElementById('cine2').innerHTML="-------------";
+				document.getElementById('cine3').innerHTML="-------------";
+				document.getElementById('cine4').innerHTML="-------------";
+				document.getElementById('poster').innerHTML = "";
+			}
+			else {
+				document.getElementById('cine1').innerHTML="Cinema 1";
+				document.getElementById('cine2').innerHTML="Cinema 2";
+				document.getElementById('cine3').innerHTML="Cinema 3";
+				document.getElementById('cine4').innerHTML="Cinema 4";
+				DisplayPoster();
+				TotalCost();
+			}
+		}
+		function DisplayPoster(){
+			document.getElementById('poster').innerHTML = "<img src = '"+ document.getElementById('movietitle').value +".jpg'  width='60%' height='70%' >"
+			document.getElementById('poster2').innerHTML = "<img src = '"+ document.getElementById('movietitle').value +".jpg'  width='60%' height='70%' >"
+		}
+		function TotalCost(){
+			var title = document.getElementById('movietitle').value, total;
+			if(title=="Archer"){
+					total = 350 * document.getElementById('numtix').value;
+				}
+			else if(title=="Freedom"){
+					total = 300 * document.getElementById('numtix').value;
+				}
+			else if(title=="Avengers"){
+				total = 375 * document.getElementById('numtix').value;
+			}
+			else if(title=="Frozen2"){
+				total = 450 * document.getElementById('numtix').value;
+			}
+			else if(title=="Spiderman"){
+				total = 375 * document.getElementById('numtix').value;
+			}
+			else if(title=="BuyBust"){
+				total = 300 * document.getElementById('numtix').value;
+			}
+			else if(title=="Eerie"){
+				total = 300 * document.getElementById('numtix').value;
+			}
+			else if(title=="ManilaKingpin"){
+				total = 320 * document.getElementById('numtix').value;
+			}
+			document.getElementById('totalprice').setAttribute("value",total)
+		}
+
+		function PaymentToChange(){
+			var payment = document.getElementById('payment').value;
+			var change = document.getElementById('totalprice').value;
+			document.getElementById('change').setAttribute("value",payment - change);
+
+		}
+		/*function Validation(){
+			if (document.getElementById('cusname').value == ""){
+				var popup = document.getElementById("popname");
+					popup.classList.toggle("show");
+			}
+		}*/
+		function PaymentDetails(){
+			var today = new Date();
+			var date = today.getMonth()+1+"/"+today.getDate();
+			var transdate =today.getFullYear()+"/"+(today.getMonth()+1)+"/"+today.getDate()+" "+today.getHours()+":"+today.getMinutes()+":"+today.getSeconds()
+			document.getElementById('displayname').innerHTML = document.getElementById('cusname').value
+			document.getElementById('displaytix').innerHTML = document.getElementById('numtix').value;
+			document.getElementById('displaytitle').innerHTML = document.getElementById('movietitle').value
+			document.getElementById('displaydat').innerHTML = date+" "+document.getElementById('moviedat').value
+			document.getElementById('displaycinnum').innerHTML = document.getElementById('cinnum').value
+			document.getElementById('displaypayment').innerHTML = document.getElementById('payment').value
+			document.getElementById('displaytotal').innerHTML = document.getElementById('totalprice').value
+			document.getElementById('displaychange').innerHTML = document.getElementById('change').value;
+			document.getElementById('displaytdat').innerHTML = transdate
+		}
+		
+	</script>
+	<!---JS Codes End Line--->
+
+	<!---CSS Codes--->
+	<style>
+		.modal{
+			display: none;
+			position: fixed;
+			z-index: 1;
+			padding-top: 5%;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			overflow: auto;
+			background-color: rgb(0,0,0);
+			background-color: rgba(0,0,0,0.4);
+		}
+		.modal-content{
+			background-color: #fefefe;
+			margin-left: auto;
+			margin-right: auto;
+			padding: 20px;
+			border: 1px solid #888;
+			width: 50%;
+		}
+		.close{
+			color: #aaaaaa;
+			float: right;
+			font-size: 28px;
+			font-weight: bold;
+		}
+		.close:hover, .close:focus {
+			color: #000;
+			text-decoration: none;
+			cursor: pointer;
+		}
+		.popup {
+			position: relative;
+			display: inline-block;
+		  
+		}
+		.popup .popuptext {
+			visibility: hidden;
+			width: 160px;
+			background-color: #555;
+			color: #fff;
+			text-align: center;
+			border-radius: 6px;
+			padding: 8px 0;
+			position: absolute;
+			z-index: 1;
+			bottom: 125%;
+			left: 50%;
+			margin-left: -80px;
+		}
+		.popup .popuptext::after {
+			content: "";
+			position: absolute;
+			top: 100%;
+			left: 50%;
+			margin-left: -5px;
+			border-width: 5px;
+			border-style: solid;
+			border-color: #555 transparent transparent transparent;
+		}
+		.popup .show {
+			visibility: visible;
+			opacity: 1;
+			transition: visibility 1s linear, opacity 1s linear;
+		}
+		.popup .hide{
+			visibility: hidden;
+			opacity: 0;
+		}
+		@keyframes fadeIn {
+			from {opacity: 0;}
+			to {opacity:1 ;}
+		}
+		@keyframes fadeOut {
+			from {opacity: 1;}
+			to {opacity:0 ;}
+		}
+		body {
+			font-family: monospace;
+			background: rgb(34,195,142);
+			background: linear-gradient(0deg, rgba(34,195,142,1) 0%, rgba(45,253,90,1) 100%);
+		}
+		select {
+			text-align-last: center;
+		}
+		input[type=text], input[type=number],select{
+			display: inline;
+			align-content: center;
+			box-sizing: border-box;
+			border-radius: 4px;
+			padding: 5px;
+			font-size: 75%;
+			margin-top: 1.5%;
+		}
+		input[type=number] {
+			width: 25%;
+		}
+		input[type=button] {
+			font-size: 100%;
+			padding: 1.5%;
+			border-radius: 8px;
+		}
+		#header {
+			font-weight: 1000;
+			text-align: center;
+			font-size: 300%;
+			background-color: darkseagreen;
+			border: 5px solid grey;
+			padding: 50px;
+			margin-left: 25%;
+			margin-right: 25%;
+			margin-top: 2%;
+			margin-bottom: 2.5%;
+		}
+		#content {
+			font-size: 24px;
+			border: 5px solid black;
+			background-color: dimgrey;
+			margin-top: 2.5%;
+			margin-left: 10%;
+			margin-right: 10%;
+			margin-bottom: 2.5%;
+			line-height: 1.6;
+		}
+		#LeftCol, #LeftCol2 {
+			padding-left: 50px;
+			text-align: right;
+		}
+		#RightCol {
+			padding-left: 5px;
+			padding-bottom: 8px;
+		}
+		#poster{
+			padding: 10px;
+			width: 500px;
+		}
+		#poster{
+			width: 500px;
+		}
+	</style>
+	<!---CSS Codes End Line--->
+</head>
+<body>
+	<!---Content Start--->
+	<form id="header">Aatrax Cinema</form>
+	<form id="content">
+		<table>
+			<tr>
+				<td id="LeftCol">Name:</td>
+				<td id="RightCol">
+					<div class="popup">
+						<input type="text" id="cusname" placeholder="Enter Customer Name..">
+							<span class="popuptext" id="popname">Required to fill this area
+							</span>
+					</div>
+				</td>
+				<td align="Center">Movie Poster</td>
+			</tr>
+			<tr>
+				<td id="LeftCol">No. of Ticket:</td>
+				<td id="RightCol"><input type="number" placeholder="Tickets.." id="numtix" min="1">
+				</td>
+				<td rowspan="8" align="center">
+					<div id="poster"></div>
+				</td>
+			</tr>
+			<tr>
+				<td id="LeftCol">Box Type:</td>
+				<td id="RightCol">
+					<input type="radio" id="btupper" name="Boxtype" value="Upper">
+						<label for="btupper">Upper</label>
+					<input type="radio" id="btlower" name="Boxtype" value="Lower">
+						<label for="btupper">Lower</label>
+					<input type="radio" id="btvip" name="Boxtype" value="VIP">
+						<label for="btupper">VIP Seats</label>
+				</td>
+			</tr>
+			<tr>
+				<td id="LeftCol">Movie Title:</td>
+				<td id="RightCol">
+					<select id="movietitle" onchange="Time()">
+						<option value="None">-------------</option>
+						<option value="Archer">Archer</option>
+						<option value="Freedom">Freedom</option>
+						<option value="Avengers">Avengers</option>
+						<option value="Frozen2">(3D-MAX) Frozen II</option>
+						<option value="Spiderman">Spiderman: Far From Home</option>
+						<option value="BuyBust">Buy Bust</option>
+						<option value="Eerie">Eerie</option>
+						<option value="ManilaKingpin">Manila Kingpin: Untold Story of Asiong Salonga</option>
+					</select>
+			</td>
+			</tr>
+			<tr>
+				<td id="LeftCol">Time Slots:</td>
+				<td id="RightCol">
+					<select id="moviedat">
+						<option id="time1">-------------</option>
+						<option id="time2">-------------</option>
+						<option id="time3">-------------</option>
+						<option id="time4">-------------</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td id="LeftCol">Cinema No.:</td>
+				<td id="RightCol">
+					<select id="cinnum">
+						<option id="cine1">-------------</option>
+						<option id="cine2">-------------</option>
+						<option id="cine3">-------------</option>
+						<option id="cine4">-------------</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td id="LeftCol">Total Price:</td>
+				<td id="RightCol">
+					<input type="number" id="totalprice" readonly></div>
+				</td>
+			</tr>
+			<tr>
+				<td id="LeftCol">Payment:</td>
+				<td id="RightCol">
+					<input type="number" id="payment" onchange="PaymentToChange()">
+				</td>
+			</tr>
+			<tr>
+				<td id="LeftCol">Change:</td>
+				<td id="RightCol">
+					<input type="number" id="change" readonly>
+				</td>
+			</tr>
+			<tr>
+				<td id="Center" colspan="3" align="center"><input type="button" id="paymentbtn" value="SUBMIT" onclick="PaymentChekerAndGo()"></td>
+			</tr>
+		</table>
+		<div id=test></div>
+	</form>
+	<!---Popup Window---> 
+	<div id="boxmodal" class="modal">
+		<div class="modal-content">
+		    <span id="closebtn" class="close">&times;</span>
+		    <form id="detailspanel">
+		    	<table cellpadding="5px">
+		    		<tr>
+		    			<td>Name:</td>
+		    			<td><div id="displayname"></div></td>
+		    			<td rowspan="10" align="center"><div id="poster2"></div></td>
+		    		</tr>
+		    		<tr>
+		    			<td>No. of Ticket:</td>
+		    			<td><div id="displaytix"></div></td>
+		    		</tr>
+		    		<tr>
+		    			<td>Movie Title:</td>
+		    			<td><div id="displaytitle"></div></td>
+		    		</tr>
+		    		<tr>
+		    			<td>Date and Time:</td>
+		    			<td><div id="displaydat"></div></td>
+		    		</tr>
+		    		<tr>
+		    			<td>Cinema no.:</td>
+		    			<td><div id="displaycinnum"></div></td>
+		    		</tr>
+		    		<tr>
+		    			<td>Total Price:</td>
+		    			<td><div id="displaytotal"></div></td>
+		    		</tr>
+		    		<tr>
+		    			<td>Payment:</td>
+		    			<td><div id="displaypayment"></div></td>
+		    		</tr>
+		    		<tr>
+		    			<td>Change:</td>
+		    			<td><div id="displaychange"></div></td>
+		    		</tr>
+		    		<tr>
+		    			<td>Cashier Name: </td>
+		    			<td>Alex T. Rgov</td>
+		    		</tr>
+		    		<tr>
+		    			<td>Transaction Date:</td>
+		    			<td><div id="displaytdat"></div></td>
+		    		</tr>
+		    		<tr>
+		    			<td colspan="3" align="center"><input type="button" value="OK" onclick="Refresh()"></td>
+		    		</tr>
+		    	</table>
+		    </form>
+		</div>
+	</div>
+	<!---Popup Window End--->
+	<!---Content End--->
+
+	<!---Design & Reaction Script Below--->
+	<script type="text/javascript">
+		var cheker = document.getElementById('cusname')
+		function ClearPop() {	/*Validation*/
+			if(document.getElementById('cusname').value == ""){
+				var popup = document.getElementById("popname");
+					popup.classList.toggle("show");
+			}
+		}
+		function PaymentChekerAndGo(){
+			var modal = document.getElementById("boxmodal");
+			var paymentbutton = document.getElementById("paymentbtn");
+			var span = document.getElementById("closebtn")
+			paymentbutton.onclick = function() {
+			  modal.style.display = "block";
+
+			}
+			span.onclick = function() {
+			  modal.style.display = "none";
+			  PaymentDetails().reset()
+			}
+			window.onclick = function(event) {
+			  if (event.target == modal) {
+			    modal.style.display = "none";
+			    PaymentDetails().reset();
+			  }
+			}
+			PaymentDetails();
+		}
+		function Refresh(){
+			alert("Thank you for using, Press OK to proceed new session")
+			location.reload();
+		}
+	</script>
+	<!---Design & Reaction Script End--->
+</body>
+</html>
